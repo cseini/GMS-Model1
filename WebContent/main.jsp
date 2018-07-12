@@ -25,6 +25,7 @@
 			<td><img src="img/home/test.jpg" alt="" /></td>
 			<td id="main-tab-layout-td">
 				<ul>
+					<li><a href="jsp/join/join_form.jsp">회원가입</a></li>
 					<li><a href="jsp/login/user_login_form.jsp" >사용자 로그인</a></li>
 					<li><a href="jsp/login/admin_login_form.jsp">관리자 로그인</a></li>
 				</ul>

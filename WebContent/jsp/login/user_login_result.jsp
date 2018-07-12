@@ -18,11 +18,9 @@
 		MemberBean m = new MemberBean();
 		m.setUserId(request.getParameter("userid"));
 		m.setPassword(request.getParameter("password"));
-		session.setAttribute("res",MemberServiceImpl.getInstance().login(m));
 		if(MemberServiceImpl.getInstance().login(m)){
 			%>
 			<h3>로그인 성공</h3>
-			<%=session.getAttribute("res") %>
 			<%
 			
 		}else{

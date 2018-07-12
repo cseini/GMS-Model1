@@ -24,3 +24,7 @@ table, tr, th, td {
 /* mypage */
 #mypage-table-layout-tr{height:530px}
 #mypage-table-layout-td{width:150px; vertical-align: top; padding-top:10px} 
+
+/* join-login */ 
+#join-layout{margin:150px auto; width:300px}
+#join-form{border:1px solid black; padding:10px}

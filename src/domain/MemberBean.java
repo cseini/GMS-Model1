@@ -1,7 +1,13 @@
 package domain;
 
 public class MemberBean{
-	private String userId, teamId, name, age, roll, password;
+	private String userId, teamId, name, ssn, roll, password;
+
+	@Override
+	public String toString() {
+		return "회원정보 [userId=" + userId + ", teamId=" + teamId + ", name=" + name + ", ssn=" + ssn + ", roll="
+				+ roll + ", password=" + password + "]";
+	}
 
 	public String getUserId() {
 		return userId;
@@ -27,12 +33,12 @@ public class MemberBean{
 		this.name = name;
 	}
 
-	public String getAge() {
-		return age;
+	public String getSsn() {
+		return ssn;
 	}
 
-	public void setAge(String age) {
-		this.age = age;
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
 
 	public String getRoll() {
@@ -51,11 +57,4 @@ public class MemberBean{
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "회원정보 [userId=" + userId + ", teamId=" + teamId + ", name=" + name + ", age=" + age + ", roll="
-				+ roll + ", password=" + password + "]";
-	}
-
-
-	}
+}

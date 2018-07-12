@@ -8,12 +8,14 @@ import domain.MemberBean;
 public class MemberServiceImpl implements MemberService{
 	private static MemberService instance = new MemberServiceImpl();
 	public static MemberService getInstance() {return instance;}
-	private MemberServiceImpl() {session = new MemberBean();}
-	MemberBean session;
+	private MemberServiceImpl() {}
 	@Override
 	public void createMember(MemberBean Member) {
-		// TODO Auto-generated method stub
-		
+		if(findMemberBySeq(Member.getUserId())==null) {
+			MemberDaoImpl.getInstance().insertMember(Member);
+		}else{
+			
+		}
 	}
 	@Override
 	public List<MemberBean> listMember() {
@@ -22,14 +24,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public List<MemberBean> findMemberByWord(String word) {
-		System.out.println(word);
-		MemberDaoImpl.getInstance().selectMemberByWord(word);
-		return null;
+				
+		return MemberDaoImpl.getInstance().selectMemberByWord(word);
 	}
 	@Override
 	public MemberBean findMemberBySeq(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberDaoImpl.getInstance().selectMemberBySeq(seq);
 	}
 	@Override
 	public int countMember() {
@@ -48,9 +48,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean login(MemberBean bean) {
-		session = MemberDaoImpl.getInstance().login(bean);
-		
-		return (session!=null);
+		return (MemberDaoImpl.getInstance().login(bean)!=null);
 	}
 
 }
