@@ -20,12 +20,12 @@
 		m.setPassword(request.getParameter("password"));
 		if(MemberServiceImpl.getInstance().login(m)){
 			%>
-			<h3>로그인 성공</h3>
+				<h3> <%= MemberDaoImpl.getInstance().login(m).getName() %> 님 로그인을 환영합니다.</h3>
+				<form action="../../main.jsp"><input type="submit" value="초기화면"/> </form>
 			<%
-			
 		}else{
 			%>
-			<h3>로그인 실패</h3>
+				<h3>로그인 실패</h3>
 			<%
 		}
 	%>

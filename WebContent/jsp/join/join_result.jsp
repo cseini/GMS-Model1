@@ -18,6 +18,10 @@
 			MemberServiceImpl.getInstance().createMember(m);
 			%>
 				<h1>가입성공</h1>
+				<h2> <%= m.getName() %>님 회원가입을 축하합니다!</h2>
+				<form action="../login/user_login_form.jsp">
+					<input type="submit" value="로그인 바로가기" />
+				</form>
 			<%
 		} else {
 		 	%>

@@ -2,6 +2,7 @@ package dao;
 
 import java.util.*;
 import domain.*;
+import enums.MemberQuery;
 import enums.Vendor;
 import factory.*;
 import pool.DBConstant;
@@ -15,15 +16,12 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void insertMember(MemberBean Member) {
 		try {
-			DatabaseFactory.createDatabase(Vendor.ORACLE,DBConstant.USERNAME,DBConstant.PASSWORD)
+			DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
 			.getConnection()
 			.createStatement()
-			.executeQuery(String.format("INSERT INTO MEMBER    " + 
-									"   (MEM_ID, NAME, PASSWORD, SSN)    "+
-									"   VALUES    "+
-									"   ('%s', '%s', '%s', '%s')",
-									Member.getUserId(), Member.getName(), Member.getPassword(), Member.getSsn()));
-		} catch (Exception e) {
+			.executeUpdate(String.format(MemberQuery.INSERT_MEMBER.toString(),
+							Member.getUserId(), Member.getName(), Member.getPassword(), Member.getSsn()));
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -47,11 +45,11 @@ public class MemberDaoImpl implements MemberDao {
 		MemberBean m = null;
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, DBConstant.USERNAME, DBConstant.PASSWORD)
-			.getConnection().createStatement().executeQuery(String.format("SELECT MEM_ID MEMID,NAME,SSN,PASSWORD,ROLL FROM MEMBER WHERE MEM_ID LIKE '%s'",seq));
+			.getConnection().createStatement().executeQuery(String.format(MemberQuery.SELECT_MEMBER_BY_SEQ.toString(),seq));
 			while(rs.next()) {
 				m = new MemberBean();
 				m.setUserId(rs.getString("MEMID"));
-				m.setTeamId(rs.getString("TEAMID"));
+				m.setTeamId(rs.getString("TEAM_ID"));
 				m.setName(rs.getString("NAME"));
 				m.setSsn(rs.getString("SSN"));
 				m.setRoll(rs.getString("ROLL"));
@@ -89,17 +87,8 @@ public class MemberDaoImpl implements MemberDao {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE,DBConstant.USERNAME,DBConstant.PASSWORD)
 					.getConnection()
 					.createStatement()
-					.executeQuery(String.format("SELECT MEM_ID MEMID,  " + 
-							" TEAM_ID TEAMID,  " +
-							"	NAME,  " +
-							"	SSN,  "	+
-							"	 ROLL,  " +
-							"	 PASSWORD  " +
-							"   FROM MEMBER  "	+
-							"   WHERE MEM_ID LIKE '%s' " +
-							"   AND PASSWORD LIKE '%s' ",
+					.executeQuery(String.format(MemberQuery.LOGIN.toString(),
 							bean.getUserId(), bean.getPassword()));
-			System.out.println(bean.getUserId());
 			while (rs.next()){
 				result = new MemberBean();
 				result.setUserId(rs.getString("MEMID"));

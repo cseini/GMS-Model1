@@ -11,11 +11,7 @@ public class MemberServiceImpl implements MemberService{
 	private MemberServiceImpl() {}
 	@Override
 	public void createMember(MemberBean Member) {
-		if(findMemberBySeq(Member.getUserId())==null) {
-			MemberDaoImpl.getInstance().insertMember(Member);
-		}else{
-			
-		}
+		MemberDaoImpl.getInstance().insertMember(Member);
 	}
 	@Override
 	public List<MemberBean> listMember() {
@@ -24,7 +20,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public List<MemberBean> findMemberByWord(String word) {
-				
 		return MemberDaoImpl.getInstance().selectMemberByWord(word);
 	}
 	@Override
