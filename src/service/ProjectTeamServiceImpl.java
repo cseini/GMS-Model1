@@ -1,6 +1,8 @@
 package service;
 
 import java.util.List;
+
+import dao.ProjectTeamDaoImpl;
 import domain.ProjectTeamBean;
 
 public class ProjectTeamServiceImpl implements ProjectTeamService{
@@ -9,38 +11,31 @@ public class ProjectTeamServiceImpl implements ProjectTeamService{
 	private ProjectTeamServiceImpl() {}
 	@Override
 	public void createProjectTeam(ProjectTeamBean ProjectTeam) {
-		// TODO Auto-generated method stub
-		
+		ProjectTeamDaoImpl.getInstance().insertProjectTeam(ProjectTeam);
 	}
 	@Override
 	public List<ProjectTeamBean> listProjectTeam() {
-		// TODO Auto-generated method stub
-		return null;
+		return ProjectTeamDaoImpl.getInstance().selectAllProjectTeam();
 	}
 	@Override
 	public List<ProjectTeamBean> findProjectTeamByWord(String word) {
-		// TODO Auto-generated method stub
-		return null;
+		return ProjectTeamDaoImpl.getInstance().selectProjectTeamByWord(word);
 	}
 	@Override
 	public ProjectTeamBean findProjectTeamBySeq(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		return ProjectTeamDaoImpl.getInstance().selectProjectTeamBySeq(seq);
 	}
 	@Override
 	public int countProjectTeam() {
-		// TODO Auto-generated method stub
-		return 0;
+		return ProjectTeamDaoImpl.getInstance().countProjectTeam();
 	}
 	@Override
 	public void modifyProjectTeam(ProjectTeamBean bean) {
-		// TODO Auto-generated method stub
-		
+		ProjectTeamDaoImpl.getInstance().updateProjectTeam(bean);
 	}
 	@Override
 	public void removeProjectTeam(ProjectTeamBean bean) {
-		// TODO Auto-generated method stub
-		
+		ProjectTeamDaoImpl.getInstance().deleteProjectTeam(bean);
 	}
 
 }

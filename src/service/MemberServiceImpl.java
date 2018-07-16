@@ -15,8 +15,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public List<MemberBean> listMember() {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberDaoImpl.getInstance().selectAllMember();
 	}
 	@Override
 	public List<MemberBean> findMemberByWord(String word) {
@@ -28,18 +27,15 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDaoImpl.getInstance().countMember();
 	}
 	@Override
 	public void modifyMember(MemberBean bean) {
-		// TODO Auto-generated method stub
-		
+		MemberDaoImpl.getInstance().updateMember(bean);
 	}
 	@Override
 	public void removeMember(MemberBean bean) {
-		// TODO Auto-generated method stub
-		
+		MemberDaoImpl.getInstance().deleteMember(bean);
 	}
 	@Override
 	public boolean login(MemberBean bean) {
